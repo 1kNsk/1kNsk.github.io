@@ -8,6 +8,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ⚙️ СКВОЗНАЯ АНАЛИТИКА: ЯНДЕКС МЕТРИКА -->
+    <!-- Замените XXXXXXXX на ваш номер счётчика Метрики -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111571315', 'ym');
+
+        ym(111571315, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/111571315" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- ⚙️ СКВОЗНАЯ АНАЛИТИКА: GOOGLE ADS (GLOBAL SITE TAG) -->
+    <!-- Замените AW-XXXXXXXXX на ваш идентификатор конверсии Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-XXXXXXXXX');
+    </script>
+
     <style>
         :root {
             --bg: #fafaf7;
@@ -15,7 +42,7 @@
             --surface-soft: #f5f2ed;
             --text: #2b2b28;
             --text-muted: #5e5b54;
-            --accent: #b88b5c; /* тёплое золото/бронза */
+            --accent: #b88b5c;
             --accent-light: #d4af7a;
             --accent-glow: rgba(184, 139, 92, 0.25);
             --accent-soft: rgba(184, 139, 92, 0.08);
@@ -27,15 +54,8 @@
             --transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
@@ -44,430 +64,145 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.5s ease;
         }
 
-        /* Стиль модерн: плавные линии, изящные акценты */
-        h1, h2, h3, .serif {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
+        /* Вариативные фоны для разных кампаний */
+        body.variant-family { --bg: #f6f8f4; --accent: #6b8f5e; --accent-light: #9cbf8a; --accent-glow: rgba(107, 143, 94, 0.25); --accent-soft: rgba(107, 143, 94, 0.08); }
+        body.variant-ipoteka { --bg: #f4f6fa; --accent: #4a6fa5; --accent-light: #7a9ec9; --accent-glow: rgba(74, 111, 165, 0.25); --accent-soft: rgba(74, 111, 165, 0.08); }
+        body.variant-invest { --bg: #f7f5f2; --accent: #8b6b4a; --accent-light: #b89a7a; --accent-glow: rgba(139, 107, 74, 0.25); --accent-soft: rgba(139, 107, 74, 0.08); }
+        body.variant-srochno { --bg: #faf5f3; --accent: #b85c5c; --accent-light: #d47a7a; --accent-glow: rgba(184, 92, 92, 0.25); --accent-soft: rgba(184, 92, 92, 0.08); }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: -0.5px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        /* Анимированный фон */
         .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
             background: radial-gradient(ellipse at 30% 20%, rgba(184,139,92,0.08) 0%, transparent 55%),
                         radial-gradient(ellipse at 80% 70%, rgba(184,139,92,0.05) 0%, transparent 55%);
             animation: softShift 12s ease-in-out infinite alternate;
+            transition: background 0.5s ease;
         }
-        @keyframes softShift {
-            0% { opacity: 0.7; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.03); }
-        }
+        body.variant-family .bg-pattern { background: radial-gradient(ellipse at 30% 20%, rgba(107,143,94,0.10) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(107,143,94,0.06) 0%, transparent 55%); }
+        body.variant-ipoteka .bg-pattern { background: radial-gradient(ellipse at 30% 20%, rgba(74,111,165,0.10) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(74,111,165,0.06) 0%, transparent 55%); }
+        body.variant-invest .bg-pattern { background: radial-gradient(ellipse at 30% 20%, rgba(139,107,74,0.10) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(139,107,74,0.06) 0%, transparent 55%); }
+        body.variant-srochno .bg-pattern { background: radial-gradient(ellipse at 30% 20%, rgba(184,92,92,0.10) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(184,92,92,0.06) 0%, transparent 55%); }
 
-        /* Анимация появления */
-        .reveal {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        @keyframes softShift { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.03); } }
 
-        /* Header */
+        .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 14px 0;
-            transition: background 0.4s, box-shadow 0.4s;
-            background: transparent;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 14px 0; transition: background 0.4s, box-shadow 0.4s; background: transparent;
         }
         header.scrolled {
-            background: rgba(250, 250, 247, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
-            border-bottom: 1px solid var(--border);
+            background: rgba(250, 250, 247, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.04); border-bottom: 1px solid var(--border);
         }
-        header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        header .container { display: flex; align-items: center; justify-content: space-between; }
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: var(--text);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 700;
+            color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 6px;
         }
-        .logo i {
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
+        .logo i { color: var(--accent); font-size: 1.5rem; }
         .header-phone {
-            font-weight: 600;
-            color: var(--text);
-            text-decoration: none;
-            background: var(--surface);
-            padding: 10px 20px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: all var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-weight: 600; color: var(--text); text-decoration: none;
+            background: var(--surface); padding: 10px 20px; border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all var(--transition);
+            display: flex; align-items: center; gap: 8px;
         }
-        .header-phone:hover {
-            box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-            color: var(--accent);
-        }
+        .header-phone:hover { box-shadow: 0 8px 22px rgba(0,0,0,0.08); color: var(--accent); }
 
-        /* Hero */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            position: relative;
-            z-index: 1;
-        }
-        #hero .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+        #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; position: relative; z-index: 1; }
+        #hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .hero-tag {
-            display: inline-block;
-            background: var(--accent-soft);
-            color: var(--accent);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(184,139,92,0.2);
+            display: inline-block; background: var(--accent-soft); color: var(--accent);
+            padding: 8px 18px; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+            letter-spacing: 0.5px; margin-bottom: 20px; border: 1px solid rgba(184,139,92,0.2);
         }
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 3.8rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: #1f1e1b;
-        }
-        .hero-title span {
-            color: var(--accent);
-            position: relative;
-        }
-        .hero-text {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-            max-width: 450px;
-        }
-        .hero-cta {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 20px; color: #1f1e1b; }
+        .hero-title span { color: var(--accent); position: relative; }
+        .hero-text { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 28px; max-width: 450px; }
+        .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: all var(--transition);
-            background: var(--surface);
-            color: var(--text);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+            display: inline-flex; align-items: center; gap: 10px; padding: 14px 30px;
+            border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none;
+            cursor: pointer; border: none; transition: all var(--transition);
+            background: var(--surface); color: var(--text); box-shadow: 0 6px 20px rgba(0,0,0,0.04);
         }
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 8px 25px var(--accent-glow);
-        }
-        .btn-primary:hover {
-            background: #a67c4b;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(184, 139, 92, 0.4);
-        }
-        .btn-outline {
-            border: 1.5px solid var(--border);
-            background: transparent;
-        }
-        .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+        .btn-primary { background: var(--accent); color: white; box-shadow: 0 8px 25px var(--accent-glow); }
+        .btn-primary:hover { background: var(--accent-light); transform: translateY(-3px); box-shadow: 0 15px 35px var(--accent-glow); }
+        .btn-outline { border: 1.5px solid var(--border); background: transparent; }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* Карусель */
         .carousel-wrapper {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            aspect-ratio: 4/3;
-            background: #e9e5df;
+            position: relative; border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); aspect-ratio: 4/3; background: #e9e5df;
         }
-        .carousel-slides {
-            display: flex;
-            height: 100%;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
+        .carousel-slides { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .carousel-slide {
-            min-width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
+            min-width: 100%; height: 100%; background-size: cover; background-position: center;
         }
-        .carousel-dots {
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 2;
-        }
+        .carousel-dots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2; }
         .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: 0.3s;
+            width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5);
+            cursor: pointer; transition: 0.3s;
         }
-        .carousel-dot.active {
-            background: white;
-            transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
+        .carousel-dot.active { background: white; transform: scale(1.3); box-shadow: 0 0 10px rgba(0,0,0,0.2); }
 
-        /* Секции */
-        section {
-            padding: 90px 0;
-            position: relative;
-            z-index: 1;
-        }
-        .section-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            margin-bottom: 16px;
-            color: #1f1e1b;
-        }
-        .section-subtitle {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin-bottom: 48px;
-        }
+        section { padding: 90px 0; position: relative; z-index: 1; }
+        .section-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+        .section-title { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 16px; color: #1f1e1b; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin-bottom: 48px; }
 
-        /* Преимущества (инфографика) */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 24px;
-        }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; }
         .feature-card {
-            background: var(--surface);
-            border-radius: var(--radius-sm);
-            padding: 28px 22px;
-            box-shadow: var(--shadow);
-            transition: all var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 14px;
+            background: var(--surface); border-radius: var(--radius-sm); padding: 28px 22px;
+            box-shadow: var(--shadow); transition: all var(--transition);
+            display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
             border: 1px solid var(--border);
         }
-        .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-light);
-        }
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--accent);
-            background: var(--accent-soft);
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 16px;
-        }
-        .feature-card h3 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
+        .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--accent-light); }
+        .feature-icon { font-size: 2rem; color: var(--accent); background: var(--accent-soft); width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; border-radius: 16px; }
+        .feature-card h3 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.1rem; }
+        .feature-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
-        /* Планировка */
-        .plan-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: center;
-            justify-content: center;
-        }
-        .plan-svg {
-            background: #fff;
-            border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: var(--shadow);
-            max-width: 400px;
-            width: 100%;
-        }
-        .plan-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            list-style: none;
-            margin-top: 20px;
-            justify-content: center;
-        }
-        .plan-legend li {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-        .legend-color {
-            width: 14px;
-            height: 14px;
-            border-radius: 4px;
-        }
+        .plan-container { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; }
+        .plan-svg { background: #fff; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); max-width: 400px; width: 100%; }
+        .plan-legend { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; margin-top: 20px; justify-content: center; }
+        .plan-legend li { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); }
+        .legend-color { width: 14px; height: 14px; border-radius: 4px; }
 
-        /* Характеристики дома */
-        .house-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .detail-item {
-            background: var(--surface);
-            border-radius: var(--radius-sm);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-        .detail-item i {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
+        .house-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .detail-item { background: var(--surface); border-radius: var(--radius-sm); padding: 24px; box-shadow: var(--shadow); text-align: center; }
+        .detail-item i { font-size: 2rem; color: var(--accent); margin-bottom: 12px; }
 
-        /* Форма захвата */
-        .cta-form {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            max-width: 520px;
-            margin: 0 auto;
-        }
-        .input-wrap {
-            flex: 1;
-            min-width: 200px;
-        }
+        .cta-form { display: flex; gap: 12px; flex-wrap: wrap; max-width: 520px; margin: 0 auto; }
+        .input-wrap { flex: 1; min-width: 200px; }
         .input-wrap input {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 50px;
-            border: 1.5px solid var(--border);
-            background: var(--surface);
-            font-size: 1rem;
-            font-family: inherit;
-            outline: none;
-            transition: 0.2s;
+            width: 100%; padding: 14px 18px; border-radius: 50px; border: 1.5px solid var(--border);
+            background: var(--surface); font-size: 1rem; font-family: inherit; outline: none; transition: 0.2s;
         }
-        .input-wrap input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-soft);
-        }
+        .input-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
 
-        /* Toast */
         .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #2b2b28;
-            color: #fff;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 500;
-            z-index: 999;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.4s ease;
-            pointer-events: none;
+            position: fixed; bottom: 30px; right: 30px; background: #2b2b28; color: #fff;
+            padding: 14px 28px; border-radius: 50px; font-weight: 500; z-index: 999;
+            opacity: 0; transform: translateY(20px); transition: 0.4s ease; pointer-events: none;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .toast.show { opacity: 1; transform: translateY(0); }
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
 
         @media (max-width: 768px) {
-            #hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-text {
-                max-width: 100%;
-            }
-            .hero-cta {
-                justify-content: center;
-            }
-            .carousel-wrapper {
-                aspect-ratio: 16/10;
-            }
+            #hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-text { max-width: 100%; }
+            .hero-cta { justify-content: center; }
+            .carousel-wrapper { aspect-ratio: 16/10; }
         }
     </style>
 </head>
@@ -480,177 +215,147 @@
         <a href="#" class="logo">
             <i class="fa-solid fa-building-columns"></i> Уютный дом
         </a>
-        <a href="tel:+79001234567" class="header-phone">
-            <i class="fa-solid fa-phone"></i> +7 (900) 123-45-67
+        <a href="tel:+79628275539" class="header-phone">
+            <i class="fa-solid fa-phone"></i> +7 (962) 827-55-39
         </a>
     </div>
 </header>
 
-<!-- Hero -->
-<section id="hero">
-    <div class="container">
-        <div class="reveal">
-            <div class="hero-tag">
-                <i class="fa-solid fa-circle-check" style="margin-right:6px;"></i> Прямая продажа от собственника
-            </div>
-            <h1 class="hero-title">
-                Светлая 1-комнатная<br> <span>46 м² с большой лоджией</span>
-            </h1>
-            <p class="hero-text">
-                Кирпичный дом 2008 года, тёплые полы на лоджии и в ванной. Огромная парковка, шлагбаум, ТЦ Мега в 5 минутах. Ипотека одобрена любым банком.
-            </p>
-            <div class="hero-cta">
-                <a href="#cta" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Записаться на просмотр</a>
-                <a href="#features" class="btn btn-outline"><i class="fa-solid fa-circle-info"></i> Подробнее</a>
-            </div>
-        </div>
-        <div class="reveal">
-            <div class="carousel-wrapper" id="carousel">
-                <div class="carousel-slides" id="carouselSlides">
-                    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&h=600&fit=crop');" aria-label="Светлая гостиная"></div>
-                    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800&h=600&fit=crop');" aria-label="Кухня"></div>
-                    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1586105449897-20b5efd7a3fa?w=800&h=600&fit=crop');" aria-label="Лоджия"></div>
-                    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=800&h=600&fit=crop');" aria-label="Ванная комната"></div>
+<main id="main-content">
+    <!-- Hero -->
+    <section id="hero">
+        <div class="container">
+            <div class="reveal">
+                <div class="hero-tag" id="heroTag">
+                    <i class="fa-solid fa-circle-check" style="margin-right:6px;"></i> Прямая продажа от собственника
                 </div>
-                <div class="carousel-dots" id="carouselDots"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Ключевые преимущества (инфографика) -->
-<section id="features">
-    <div class="container">
-        <div class="section-label reveal">Почему эта квартира?</div>
-        <h2 class="section-title reveal">Преимущества для жизни</h2>
-        <p class="section-subtitle reveal">Каждая деталь продумана для вашего комфорта и уюта.</p>
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
-                <h3>Тёплые полы</h3>
-                <p>Установлены на просторной лоджии и в ванной комнате — комфорт в любое время года.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon"><i class="fa-solid fa-building"></i></div>
-                <h3>Кирпичные стены</h3>
-                <p>Дом 2008 года, толстые стены отлично держат тепло и обеспечивают тишину.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon"><i class="fa-solid fa-car"></i></div>
-                <h3>Парковка без проблем</h3>
-                <p>Огромная охраняемая территория со шлагбаумом, места хватает всем жильцам и гостям.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon"><i class="fa-solid fa-shop"></i></div>
-                <h3>ТЦ Мега рядом</h3>
-                <p>5 минут пешком — все магазины, доставки, маркетплейсы и развлечения.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                <h3>Любая ипотека</h3>
-                <p>Квартира полностью соответствует требованиям банков: Сбер, ВТБ, Дом.РФ и другие.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon"><i class="fa-solid fa-sun"></i></div>
-                <h3>Очень светло</h3>
-                <p>Большие окна и грамотная планировка наполняют квартиру естественным светом.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Планировка с инфографикой -->
-<section id="plan">
-    <div class="container">
-        <div class="section-label reveal">Планировка</div>
-        <h2 class="section-title reveal">46 м² разумного пространства</h2>
-        <div class="plan-container reveal">
-            <div class="plan-svg">
-                <svg viewBox="0 0 300 220" width="100%" height="auto">
-                    <!-- Стены -->
-                    <rect x="10" y="10" width="280" height="200" fill="#f5f0e8" stroke="#b8a99a" stroke-width="3" rx="8"/>
-                    <!-- Комната -->
-                    <rect x="20" y="20" width="160" height="180" fill="#e6dfd3" stroke="#b8a99a" stroke-width="2" rx="4"/>
-                    <text x="100" y="115" text-anchor="middle" font-size="12" fill="#5e5b54">Комната 18 м²</text>
-                    <!-- Кухня -->
-                    <rect x="190" y="20" width="80" height="100" fill="#e6dfd3" stroke="#b8a99a" stroke-width="2" rx="4"/>
-                    <text x="230" y="75" text-anchor="middle" font-size="11" fill="#5e5b54">Кухня 12 м²</text>
-                    <!-- Санузел -->
-                    <rect x="190" y="130" width="80" height="70" fill="#e6dfd3" stroke="#b8a99a" stroke-width="2" rx="4"/>
-                    <text x="230" y="170" text-anchor="middle" font-size="10" fill="#5e5b54">С/У 4 м²</text>
-                    <!-- Лоджия -->
-                    <rect x="20" y="140" width="160" height="60" fill="#d4cdbc" stroke="#b8a99a" stroke-width="2" rx="4" stroke-dasharray="4"/>
-                    <text x="100" y="174" text-anchor="middle" font-size="11" fill="#5e5b54">Лоджия 6 м² (утеплена)</text>
-                    <!-- Подпись площади -->
-                    <text x="150" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#b88b5c">Общая: 46 м²</text>
-                </svg>
-                <ul class="plan-legend">
-                    <li><span class="legend-color" style="background:#e6dfd3;"></span> Жилая зона</li>
-                    <li><span class="legend-color" style="background:#d4cdbc;"></span> Лоджия</li>
-                </ul>
-            </div>
-            <div style="max-width:400px;">
-                <p style="margin-bottom:16px; color:var(--text-muted);">
-                    <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Изолированная комната с двумя окнами<br>
-                    <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Кухня с эркером и местом для обеденной зоны<br>
-                    <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Санузел совмещённый, с тёплым полом<br>
-                    <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Лоджия 6 м² — тёплый пол, панорамное остекление
+                <h1 class="hero-title" id="heroTitle">
+                    Светлая 1-комнатная<br> <span>46 м² с большой лоджией</span>
+                </h1>
+                <p class="hero-text" id="heroText">
+                    Кирпичный дом 2008 года, тёплые полы на лоджии и в ванной. Огромная парковка, шлагбаум, ТЦ Мега в 5 минутах. Ипотека одобрена любым банком.
                 </p>
+                <div class="hero-cta">
+                    <a href="#cta" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Записаться на просмотр</a>
+                    <a href="#features" class="btn btn-outline"><i class="fa-solid fa-circle-info"></i> Подробнее</a>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="carousel-wrapper" id="carousel">
+                    <div class="carousel-slides" id="carouselSlides">
+                        <!-- Слайды будут добавлены динамически -->
+                    </div>
+                    <div class="carousel-dots" id="carouselDots"></div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- О доме и локации -->
-<section id="house">
-    <div class="container">
-        <div class="section-label reveal">Дом и район</div>
-        <h2 class="section-title reveal">Кирпичный, надёжный, ухоженный</h2>
-        <div class="house-details reveal">
-            <div class="detail-item">
-                <i class="fa-solid fa-calendar"></i>
-                <h3>2008 год</h3>
-                <p>постройки</p>
-            </div>
-            <div class="detail-item">
-                <i class="fa-solid fa-brick"></i>
-                <h3>Кирпич</h3>
-                <p>толстые стены</p>
-            </div>
-            <div class="detail-item">
-                <i class="fa-solid fa-shield-haltered"></i>
-                <h3>Шлагбаум</h3>
-                <p>закрытая территория</p>
-            </div>
-            <div class="detail-item">
-                <i class="fa-solid fa-truck-fast"></i>
-                <h3>Доставки</h3>
-                <p>все сервисы</p>
+    <!-- Ключевые преимущества -->
+    <section id="features">
+        <div class="container">
+            <div class="section-label reveal" id="featuresLabel">Почему эта квартира?</div>
+            <h2 class="section-title reveal" id="featuresTitle">Преимущества для жизни</h2>
+            <p class="section-subtitle reveal" id="featuresSubtitle">Каждая деталь продумана для вашего комфорта и уюта.</p>
+            <div class="features-grid" id="featuresGrid">
+                <!-- Карточки будут добавлены динамически -->
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CTA -->
-<section id="cta">
-    <div class="container" style="text-align:center;">
-        <div class="section-label reveal">Готовы к переезду?</div>
-        <h2 class="section-title reveal">Запишитесь на просмотр сегодня</h2>
-        <p class="section-subtitle reveal" style="margin-left:auto;margin-right:auto;">Оставьте контакты — мы перезвоним в течение 15 минут и ответим на все вопросы об ипотеке.</p>
-        <form class="cta-form reveal" id="ctaForm">
-            <div class="input-wrap">
-                <input type="text" placeholder="Ваше имя" required id="ctaName">
+    <!-- Планировка -->
+    <section id="plan">
+        <div class="container">
+            <div class="section-label reveal">Планировка</div>
+            <h2 class="section-title reveal" id="planTitle">46 м² разумного пространства</h2>
+            <div class="plan-container reveal">
+                <div class="plan-svg">
+                    <svg viewBox="0 0 300 220" width="100%" height="auto">
+                        <rect x="10" y="10" width="280" height="200" fill="#f5f0e8" stroke="#b8a99a" stroke-width="3" rx="8"/>
+                        <rect x="20" y="20" width="160" height="180" fill="#e6dfd3" stroke="#b8a99a" stroke-width="2" rx="4"/>
+                        <text x="100" y="115" text-anchor="middle" font-size="12" fill="#5e5b54">Комната 18 м²</text>
+                        <rect x="190" y="20" width="80" height="100" fill="#e6dfd3" stroke="#b8a99a" stroke-width="2" rx="4"/>
+                        <text x="230" y="75" text-anchor="middle" font-size="11" fill="#5e5b54">Кухня 12 м²</text>
+                        <rect x="190" y="130" width="80" height="70" fill="#e6dfd3" stroke="#b8a99a" stroke-width="2" rx="4"/>
+                        <text x="230" y="170" text-anchor="middle" font-size="10" fill="#5e5b54">С/У 4 м²</text>
+                        <rect x="20" y="140" width="160" height="60" fill="#d4cdbc" stroke="#b8a99a" stroke-width="2" rx="4" stroke-dasharray="4"/>
+                        <text x="100" y="174" text-anchor="middle" font-size="11" fill="#5e5b54">Лоджия 6 м² (утеплена)</text>
+                        <text x="150" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#b88b5c">Общая: 46 м²</text>
+                    </svg>
+                    <ul class="plan-legend">
+                        <li><span class="legend-color" style="background:#e6dfd3;"></span> Жилая зона</li>
+                        <li><span class="legend-color" style="background:#d4cdbc;"></span> Лоджия</li>
+                    </ul>
+                </div>
+                <div style="max-width:400px;" id="planDescription">
+                    <p style="margin-bottom:16px; color:var(--text-muted);">
+                        <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Изолированная комната с двумя окнами<br>
+                        <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Кухня с эркером и местом для обеденной зоны<br>
+                        <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Санузел совмещённый, с тёплым полом<br>
+                        <i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i> Лоджия 6 м² — тёплый пол, панорамное остекление
+                    </p>
+                </div>
             </div>
-            <div class="input-wrap">
-                <input type="tel" placeholder="+7 (___) ___-__-__" required id="ctaPhone">
+        </div>
+    </section>
+
+    <!-- О доме и локации -->
+    <section id="house">
+        <div class="container">
+            <div class="section-label reveal">Дом и район</div>
+            <h2 class="section-title reveal" id="houseTitle">Кирпичный, надёжный, ухоженный</h2>
+            <div class="house-details reveal" id="houseDetails">
+                <div class="detail-item">
+                    <i class="fa-solid fa-calendar"></i>
+                    <h3>2008 год</h3>
+                    <p>постройки</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fa-solid fa-brick"></i>
+                    <h3>Кирпич</h3>
+                    <p>толстые стены</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fa-solid fa-shield-haltered"></i>
+                    <h3>Шлагбаум</h3>
+                    <p>закрытая территория</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <h3>Доставки</h3>
+                    <p>все сервисы</p>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Записаться <i class="fa-solid fa-arrow-right"></i></button>
-        </form>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:14px;" class="reveal">
-            <i class="fa-solid fa-lock"></i> Ваши данные под защитой. Никакого спама.
-        </p>
-    </div>
-</section>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+        <div class="container" style="text-align:center;">
+            <div class="section-label reveal" id="ctaLabel">Готовы к переезду?</div>
+            <h2 class="section-title reveal" id="ctaTitle">Запишитесь на просмотр сегодня</h2>
+            <p class="section-subtitle reveal" id="ctaSubtitle" style="margin-left:auto;margin-right:auto;">Оставьте контакты — мы перезвоним в течение 15 минут и ответим на все вопросы об ипотеке.</p>
+            <form class="cta-form reveal" id="ctaForm">
+                <div class="input-wrap">
+                    <input type="text" placeholder="Ваше имя" required id="ctaName">
+                </div>
+                <div class="input-wrap">
+                    <input type="tel" placeholder="+7 (___) ___-__-__" required id="ctaPhone">
+                </div>
+                <!-- Скрытые поля для UTM-меток -->
+                <input type="hidden" name="utm_source" id="utm_source">
+                <input type="hidden" name="utm_medium" id="utm_medium">
+                <input type="hidden" name="utm_campaign" id="utm_campaign">
+                <input type="hidden" name="utm_content" id="utm_content">
+                <input type="hidden" name="utm_term" id="utm_term">
+                <button type="submit" class="btn btn-primary">Записаться <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:14px;" class="reveal">
+                <i class="fa-solid fa-lock"></i> Ваши данные под защитой. Никакого спама.
+            </p>
+        </div>
+    </section>
+</main>
 
 <footer>
     <div class="container">
@@ -662,97 +367,418 @@
 
 <script>
     (function() {
-        // Reveal observer
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
-        revealEls.forEach(el => observer.observe(el));
-        setTimeout(() => {
-            revealEls.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight) el.classList.add('visible');
-            });
-        }, 300);
-
-        // Header scroll
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 40);
-        });
-
-        // Carousel
-        const slidesContainer = document.getElementById('carouselSlides');
-        const dotsContainer = document.getElementById('carouselDots');
-        const slides = document.querySelectorAll('.carousel-slide');
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-
-        // Create dots
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('span');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.dataset.index = i;
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-        const dots = document.querySelectorAll('.carousel-dot');
-
-        function goToSlide(index) {
-            currentIndex = index;
-            slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+        // ================== 1. UTM-МЕТКИ И ВЫБОР ВАРИАНТА ==================
+        function getUTMParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name) || '';
         }
 
-        function nextSlide() {
-            goToSlide((currentIndex + 1) % totalSlides);
-        }
+        const utmData = {
+            source:   getUTMParam('utm_source'),
+            medium:   getUTMParam('utm_medium'),
+            campaign: getUTMParam('utm_campaign'),
+            content:  getUTMParam('utm_content'),
+            term:     getUTMParam('utm_term')
+        };
 
-        let autoPlay = setInterval(nextSlide, 4200);
-
-        const carouselWrapper = document.getElementById('carousel');
-        carouselWrapper.addEventListener('mouseenter', () => clearInterval(autoPlay));
-        carouselWrapper.addEventListener('mouseleave', () => {
-            autoPlay = setInterval(nextSlide, 4200);
-        });
-
-        // Form handling
-        function showToast(msg = 'Спасибо! Мы уже подбираем время для показа.') {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3500);
-        }
-
-        document.getElementById('ctaForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('ctaName').value.trim();
-            const phone = document.getElementById('ctaPhone').value.trim();
-            if (!name || !phone) {
-                showToast('Пожалуйста, заполните имя и телефон.');
-                return;
+        // Сохраняем UTM в localStorage для последующих визитов
+        if (utmData.source || utmData.campaign || utmData.content || utmData.term) {
+            localStorage.setItem('utm_data', JSON.stringify(utmData));
+        } else {
+            const saved = localStorage.getItem('utm_data');
+            if (saved) {
+                Object.assign(utmData, JSON.parse(saved));
             }
-            // Простейшая проверка телефона
-            if (!/^[\d\s\+\-\(\)]{7,}$/.test(phone)) {
-                showToast('Введите корректный номер телефона.');
-                return;
+        }
+
+        // Заполняем скрытые поля формы
+        document.getElementById('utm_source').value = utmData.source;
+        document.getElementById('utm_medium').value = utmData.medium;
+        document.getElementById('utm_campaign').value = utmData.campaign;
+        document.getElementById('utm_content').value = utmData.content;
+        document.getElementById('utm_term').value = utmData.term;
+
+        // Определяем вариант на основе UTM-меток
+        function selectVariant() {
+            const camp = (utmData.campaign || '').toLowerCase();
+            const term = (utmData.term || '').toLowerCase();
+            const content = (utmData.content || '').toLowerCase();
+
+            if (camp.includes('family') || term.includes('семь') || term.includes('дети') || term.includes('школа') || content.includes('family')) return 'family';
+            if (camp.includes('ipoteka') || camp.includes('ипотек') || term.includes('ипотек') || term.includes('банк') || term.includes('кредит') || content.includes('ipoteka')) return 'ipoteka';
+            if (camp.includes('invest') || camp.includes('инвест') || term.includes('инвест') || term.includes('доход') || term.includes('аренд') || content.includes('invest')) return 'invest';
+            if (camp.includes('srochno') || camp.includes('срочн') || term.includes('срочн') || term.includes('скидк') || term.includes('торг') || content.includes('srochno')) return 'srochno';
+            return 'default';
+        }
+
+        // ================== 2. ВАРИАНТЫ КОНТЕНТА ==================
+        const contentVariants = {
+            default: {
+                bodyClass: '',
+                heroTag: '<i class="fa-solid fa-circle-check" style="margin-right:6px;"></i> Прямая продажа от собственника',
+                heroTitle: 'Светлая 1-комнатная<br> <span>46 м² с большой лоджией</span>',
+                heroText: 'Кирпичный дом 2008 года, тёплые полы на лоджии и в ванной. Огромная парковка, шлагбаум, ТЦ Мега в 5 минутах. Ипотека одобрена любым банком.',
+                featuresLabel: 'Почему эта квартира?',
+                featuresTitle: 'Преимущества для жизни',
+                featuresSubtitle: 'Каждая деталь продумана для вашего комфорта и уюта.',
+                features: [
+                    { icon: 'fa-temperature-arrow-up', title: 'Тёплые полы', text: 'Установлены на просторной лоджии и в ванной комнате — комфорт в любое время года.' },
+                    { icon: 'fa-building', title: 'Кирпичные стены', text: 'Дом 2008 года, толстые стены отлично держат тепло и обеспечивают тишину.' },
+                    { icon: 'fa-car', title: 'Парковка без проблем', text: 'Огромная охраняемая территория со шлагбаумом, места хватает всем жильцам и гостям.' },
+                    { icon: 'fa-shop', title: 'ТЦ Мега рядом', text: '5 минут пешком — все магазины, доставки, маркетплейсы и развлечения.' },
+                    { icon: 'fa-file-invoice', title: 'Любая ипотека', text: 'Квартира полностью соответствует требованиям банков: Сбер, ВТБ, Дом.РФ и другие.' },
+                    { icon: 'fa-sun', title: 'Очень светло', text: 'Большие окна и грамотная планировка наполняют квартиру естественным светом.' }
+                ],
+                carouselImages: [
+                    'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1586105449897-20b5efd7a3fa?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=800&h=600&fit=crop'
+                ],
+                planTitle: '46 м² разумного пространства',
+                houseTitle: 'Кирпичный, надёжный, ухоженный',
+                ctaLabel: 'Готовы к переезду?',
+                ctaTitle: 'Запишитесь на просмотр сегодня',
+                ctaSubtitle: 'Оставьте контакты — мы перезвоним в течение 15 минут и ответим на все вопросы об ипотеке.'
+            },
+            family: {
+                bodyClass: 'variant-family',
+                heroTag: '<i class="fa-solid fa-children" style="margin-right:6px;"></i> Идеально для семьи с детьми',
+                heroTitle: 'Просторная 1-комнатная<br> <span>рядом с парком и школой</span>',
+                heroText: 'Безопасный двор, детская площадка, зелёный сквер в 3 минутах. Тёплые полы на лоджии — уютное место для игр. ТЦ Мега с развлечениями для всей семьи.',
+                featuresLabel: 'Для вашей семьи',
+                featuresTitle: 'Почему здесь хорошо детям',
+                featuresSubtitle: 'Продумано для комфортной жизни с детьми.',
+                features: [
+                    { icon: 'fa-child', title: 'Детская площадка', text: 'Современная игровая зона прямо во дворе, закрытая территория.' },
+                    { icon: 'fa-school', title: 'Школа и садик', text: 'Хорошая школа и детский сад в 7 минутах пешком.' },
+                    { icon: 'fa-tree', title: 'Сквер рядом', text: 'Тихий зелёный сквер для прогулок с коляской.' },
+                    { icon: 'fa-shield-alt', title: 'Безопасность', text: 'Закрытый двор, шлагбаум, консьерж, видеонаблюдение.' },
+                    { icon: 'fa-truck-fast', title: 'Доставка продуктов', text: 'Все маркетплейсы и доставки за 15 минут.' },
+                    { icon: 'fa-bed', title: 'Тихий двор', text: 'Окна выходят во двор, нет шума от дороги.' }
+                ],
+                carouselImages: [
+                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop'
+                ],
+                planTitle: 'Комфортное пространство для семьи',
+                houseTitle: 'Безопасный и зелёный район',
+                ctaLabel: 'Хотите посмотреть?',
+                ctaTitle: 'Приходите на просмотр всей семьёй',
+                ctaSubtitle: 'Покажем квартиру, двор и детскую площадку. Ответим на все вопросы родителей.'
+            },
+            ipoteka: {
+                bodyClass: 'variant-ipoteka',
+                heroTag: '<i class="fa-solid fa-percent" style="margin-right:6px;"></i> Ипотека одобрена всеми банками',
+                heroTitle: 'Квартира, которая<br> <span>проходит ипотеку без проблем</span>',
+                heroText: 'Полное соответствие требованиям Сбера, ВТБ, Дом.РФ. Быстрое одобрение, помощь в оформлении. Первоначальный взнос от 10%.',
+                featuresLabel: 'Ипотека',
+                featuresTitle: 'Финансовые преимущества',
+                featuresSubtitle: 'Квартира идеальна для ипотечной сделки.',
+                features: [
+                    { icon: 'fa-check-circle', title: 'Одобрена банками', text: 'Квартира прошла проверку Сбера, ВТБ, Дом.РФ, Альфа-Банка.' },
+                    { icon: 'fa-file-signature', title: 'Быстрое оформление', text: 'Поможем собрать документы и подать заявку онлайн.' },
+                    { icon: 'fa-hand-holding-usd', title: 'Низкий платёж', text: 'Ежемесячный платёж от 25 000 ₽ при сроке 30 лет.' },
+                    { icon: 'fa-home', title: 'Без обременений', text: 'Один собственник, полная стоимость в договоре.' },
+                    { icon: 'fa-shield-alt', title: 'Юридическая чистота', text: 'Проверенные документы, никаких рисков.' },
+                    { icon: 'fa-chart-line', title: 'Рост стоимости', text: 'Район активно развивается, цена будет расти.' }
+                ],
+                carouselImages: [
+                    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1571051245724-7983f7dd542c?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&h=600&fit=crop'
+                ],
+                planTitle: 'Прозрачная планировка для оценки',
+                houseTitle: 'Ликвидный актив в хорошем доме',
+                ctaLabel: 'Получите одобрение',
+                ctaTitle: 'Поможем с ипотекой за 1 день',
+                ctaSubtitle: 'Оставьте заявку — подберём лучшую ставку и рассчитаем платёж.'
+            },
+            invest: {
+                bodyClass: 'variant-invest',
+                heroTag: '<i class="fa-solid fa-chart-line" style="margin-right:6px;"></i> Инвестиционный потенциал',
+                heroTitle: 'Доходная квартира<br> <span>у ТЦ Мега: аренда от 35 000 ₽</span>',
+                heroText: 'Высокий спрос на аренду, быстрая окупаемость. Стабильный рост цен в районе. Можно сдавать посуточно или долгосрочно.',
+                featuresLabel: 'Инвестиции',
+                featuresTitle: 'Почему это выгодно',
+                featuresSubtitle: 'Цифры говорят сами за себя.',
+                features: [
+                    { icon: 'fa-coins', title: 'Окупаемость 8 лет', text: 'При текущих ставках аренды — отличный показатель.' },
+                    { icon: 'fa-warehouse', title: 'Высокий спрос', text: 'Рядом ТЦ Мега, офисы, всегда есть арендаторы.' },
+                    { icon: 'fa-building', title: 'Рост района', text: 'Открываются новые объекты инфраструктуры.' },
+                    { icon: 'fa-user-tie', title: 'Пассивный доход', text: 'Сдаётся без простоев, арендаторы долго живут.' },
+                    { icon: 'fa-chart-bar', title: 'Стабильный рост', text: 'За 5 лет цены выросли на 40%.' },
+                    { icon: 'fa-key', title: 'Готово к сдаче', text: 'Можно сдавать сразу после покупки, без вложений.' }
+                ],
+                carouselImages: [
+                    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1585128792020-803d29415281?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop'
+                ],
+                planTitle: 'Эффективная планировка для сдачи',
+                houseTitle: 'Надёжный дом для инвестиций',
+                ctaLabel: 'Узнайте доходность',
+                ctaTitle: 'Рассчитаем вашу прибыль',
+                ctaSubtitle: 'Оставьте контакты — покажем реальные цифры по аренде и окупаемости.'
+            },
+            srochno: {
+                bodyClass: 'variant-srochno',
+                heroTag: '<i class="fa-solid fa-fire" style="margin-right:6px;"></i> Срочная продажа — торг уместен',
+                heroTitle: 'Квартира по цене<br> <span>ниже рынка на 10%</span>',
+                heroText: 'Собственник переезжает, нужна быстрая сделка. Возможен торг. Квартира полностью готова к проживанию. Показ в любое время.',
+                featuresLabel: 'Срочно',
+                featuresTitle: 'Ваша выгода',
+                featuresSubtitle: 'Цена снижена, состояние отличное.',
+                features: [
+                    { icon: 'fa-tag', title: 'Цена ниже рынка', text: 'Аналогичные квартиры стоят на 400-500 тыс. дороже.' },
+                    { icon: 'fa-clock', title: 'Быстрая сделка', text: 'Готовы выйти на сделку в течение недели.' },
+                    { icon: 'fa-check-double', title: 'Документы готовы', text: 'Все справки собраны, обременений нет.' },
+                    { icon: 'fa-hand-holding-heart', title: 'Торг уместен', text: 'Собственник рассмотрит разумное предложение.' },
+                    { icon: 'fa-couch', title: 'Мебель в подарок', text: 'Кухонный гарнитур и шкаф остаются.' },
+                    { icon: 'fa-car', title: 'Парковка всегда', text: 'Место во дворе без проблем.' }
+                ],
+                carouselImages: [
+                    'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=600&fit=crop',
+                    'https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=800&h=600&fit=crop'
+                ],
+                planTitle: 'Готовая планировка для быстрого переезда',
+                houseTitle: 'Дом в отличном состоянии',
+                ctaLabel: 'Успейте первыми',
+                ctaTitle: 'Запишитесь на срочный просмотр',
+                ctaSubtitle: 'Такие предложения уходят за 1-2 дня. Не откладывайте!'
             }
-            const btn = this.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Отправка...';
-            btn.disabled = true;
+        };
+
+        // ================== 3. ПРИМЕНЕНИЕ ВАРИАНТА ==================
+        function applyVariant(variantKey) {
+            const variant = contentVariants[variantKey] || contentVariants.default;
+
+            // Класс для body (изменение фонов)
+            document.body.className = variant.bodyClass || '';
+
+            // Hero
+            document.getElementById('heroTag').innerHTML = variant.heroTag;
+            document.getElementById('heroTitle').innerHTML = variant.heroTitle;
+            document.getElementById('heroText').textContent = variant.heroText;
+
+            // Features
+            document.getElementById('featuresLabel').textContent = variant.featuresLabel;
+            document.getElementById('featuresTitle').textContent = variant.featuresTitle;
+            document.getElementById('featuresSubtitle').textContent = variant.featuresSubtitle;
+            const grid = document.getElementById('featuresGrid');
+            grid.innerHTML = '';
+            variant.features.forEach((f, index) => {
+                const card = document.createElement('div');
+                card.className = 'feature-card reveal';
+                card.style.transitionDelay = (index * 0.05) + 's';
+                card.innerHTML = `
+                    <div class="feature-icon"><i class="fa-solid ${f.icon}"></i></div>
+                    <h3>${f.title}</h3>
+                    <p>${f.text}</p>
+                `;
+                grid.appendChild(card);
+                // Повторно запускаем reveal
+                setTimeout(() => card.classList.add('visible'), 100 + index * 100);
+            });
+
+            // Карусель
+            const slidesContainer = document.getElementById('carouselSlides');
+            slidesContainer.innerHTML = '';
+            variant.carouselImages.forEach(src => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.style.backgroundImage = `url('${src}')`;
+                slidesContainer.appendChild(slide);
+            });
+
+            // Остальные тексты
+            document.getElementById('planTitle').textContent = variant.planTitle;
+            document.getElementById('houseTitle').textContent = variant.houseTitle;
+            document.getElementById('ctaLabel').textContent = variant.ctaLabel;
+            document.getElementById('ctaTitle').textContent = variant.ctaTitle;
+            document.getElementById('ctaSubtitle').textContent = variant.ctaSubtitle;
+
+            // Инициализация карусели после замены слайдов
+            initCarousel();
+
+            // Изменение порядка секций для некоторых вариантов
+            const main = document.getElementById('main-content');
+            const hero = document.getElementById('hero');
+            const features = document.getElementById('features');
+            const plan = document.getElementById('plan');
+            const house = document.getElementById('house');
+            const cta = document.getElementById('cta');
+
+            // Для "срочно" CTA сразу после hero
+            if (variantKey === 'srochno') {
+                main.insertBefore(cta, features);
+            }
+            // Для "семья" план перед features
+            else if (variantKey === 'family') {
+                main.insertBefore(plan, features);
+            }
+            // Для "инвестиции" house перед features
+            else if (variantKey === 'invest') {
+                main.insertBefore(house, features);
+            }
+            // Для "ипотека" порядок: features, plan, house, cta (по умолчанию)
+            // ничего не делаем
+        }
+
+        // ================== 4. КАРУСЕЛЬ ==================
+        function initCarousel() {
+            const slidesContainer = document.getElementById('carouselSlides');
+            const dotsContainer = document.getElementById('carouselDots');
+            const slides = slidesContainer.querySelectorAll('.carousel-slide');
+            const totalSlides = slides.length;
+            if (totalSlides === 0) return;
+
+            dotsContainer.innerHTML = '';
+            let currentIndex = 0;
+
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.dataset.index = i;
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+            function goToSlide(index) {
+                currentIndex = index;
+                slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+            }
+
+            function nextSlide() {
+                goToSlide((currentIndex + 1) % totalSlides);
+            }
+
+            let autoPlay = setInterval(nextSlide, 4200);
+
+            const carouselWrapper = document.getElementById('carousel');
+            carouselWrapper.addEventListener('mouseenter', () => clearInterval(autoPlay));
+            carouselWrapper.addEventListener('mouseleave', () => {
+                autoPlay = setInterval(nextSlide, 4200);
+            });
+        }
+
+        // ================== 5. REVEAL OBSERVER ==================
+        function initReveal() {
+            const revealEls = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
+            revealEls.forEach(el => observer.observe(el));
             setTimeout(() => {
-                showToast('Отлично! Мы перезвоним вам в течение 15 минут.');
-                document.getElementById('ctaName').value = '';
-                document.getElementById('ctaPhone').value = '';
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 1500);
-        });
+                revealEls.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) el.classList.add('visible');
+                });
+            }, 300);
+        }
+
+        // ================== 6. HEADER SCROLL ==================
+        function initHeader() {
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 40);
+            });
+        }
+
+        // ================== 7. ФОРМА И АНАЛИТИКА ==================
+        function initForm() {
+            function showToast(msg = 'Спасибо! Мы уже подбираем время для показа.') {
+                const toast = document.getElementById('toast');
+                toast.textContent = msg;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3500);
+            }
+
+            document.getElementById('ctaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('ctaName').value.trim();
+                const phone = document.getElementById('ctaPhone').value.trim();
+                if (!name || !phone) {
+                    showToast('Пожалуйста, заполните имя и телефон.');
+                    return;
+                }
+                if (!/^[\d\s\+\-\(\)]{7,}$/.test(phone)) {
+                    showToast('Введите корректный номер телефона.');
+                    return;
+                }
+
+                const btn = this.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Отправка...';
+                btn.disabled = true;
+
+                // Сбор UTM для аналитики
+                const utmPayload = {
+                    source: utmData.source,
+                    medium: utmData.medium,
+                    campaign: utmData.campaign,
+                    content: utmData.content,
+                    term: utmData.term
+                };
+
+                // Отправка в Яндекс Метрику
+                if (typeof ym !== 'undefined') {
+                    ym(XXXXXXXX, 'reachGoal', 'lead', utmPayload);
+                }
+
+                // Отправка в Google Ads (конверсия)
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-XXXXXXXXX/XXXXXXXXX',
+                        'event_callback': () => {}
+                    });
+                }
+
+                // Имитация отправки на сервер
+                setTimeout(() => {
+                    showToast('Отлично! Мы перезвоним вам в течение 15 минут.');
+                    document.getElementById('ctaName').value = '';
+                    document.getElementById('ctaPhone').value = '';
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 1500);
+            });
+        }
+
+        // ================== 8. ИНИЦИАЛИЗАЦИЯ ==================
+        function init() {
+            const variantKey = selectVariant();
+            applyVariant(variantKey);
+            initReveal();
+            initHeader();
+            initForm();
+            // Повторно запускаем reveal для новых элементов после смены варианта
+            setTimeout(() => {
+                document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) el.classList.add('visible');
+                });
+            }, 500);
+        }
+
+        // Запуск после полной загрузки DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     })();
 </script>
 </body>
